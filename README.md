@@ -1,4 +1,3 @@
-<img src="GithubImages/Counter.jpg" width="200" /> <img src="GithubImages/Timer.jpg" width="200" /> <img src="GithubImages/Dice.jpg" width="200" />
 # Board Game Helper
 
 Board Game Helper is a **React Native** app designed to enhance your tabletop and board game sessions. It provides essential tools for players to manage dice rolls, counters, and timers, all in one mobile-friendly application.
@@ -14,7 +13,7 @@ Board Game Helper is a **React Native** app designed to enhance your tabletop an
 - Dice are color-coded and visually represented.
 - Smooth animations simulate dice rolling.
 
-![Dice Screen](<img src="GithubImages/Dice.jpg" width="200" />)
+<img src="GithubImages/Dice.jpg" width="200" />
 
 ---
 
@@ -24,7 +23,7 @@ Board Game Helper is a **React Native** app designed to enhance your tabletop an
 - **Scrollable time picker** to quickly adjust the countdown with your finger.
 - Alerts you with vibration when time is up.
 
-![Timer Screen](./assets/screenshots/timer_screen.png)
+<img src="GithubImages/Timer.jpg" width="200" />
 
 ---
 
@@ -34,4 +33,4 @@ Board Game Helper is a **React Native** app designed to enhance your tabletop an
 - Increment or decrement counters easily.
 - Intuitive layout ensures all counters are visible without scrolling.
 
-![Counter Screen](./assets/screenshots/counter_screen.png)
+<img src="GithubImages/Counter.jpg" width="200" />
