@@ -14,7 +14,7 @@ Board Game Helper is a **React Native** app designed to enhance your tabletop an
 - Dice are color-coded and visually represented.
 - Smooth animations simulate dice rolling.
 
-![Dice Screen](./GithubImages/screenshots/Dice.jpg)
+![Dice Screen](<img src="GithubImages/Dice.jpg" width="200" />)
 
 ---
 
