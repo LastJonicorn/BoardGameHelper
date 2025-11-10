@@ -28,8 +28,9 @@ Board Game Helper is a **React Native** app designed to enhance your tabletop an
 ---
 
 ### Counters
-- Track up to **6 players' scores or values** simultaneously.
-- Each counter has its **own color** and name.
+- Track up to **6 players scores or values** simultaneously.
+- Each counter has its **own color**.
+- Each counter has its **own name** that the user can customize.
 - Increment or decrement counters easily.
 - Intuitive layout ensures all counters are visible without scrolling.
 
