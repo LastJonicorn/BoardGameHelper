@@ -1,34 +1,37 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Game Helper</Text>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title="🎲 Go to Dice Roller"
-          onPress={() => navigation.navigate('Dice Roller')}
-          color="#4e9af1"
-        />
-      </View>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#4e9af1' }]}
+        onPress={() => navigation.navigate('Dice Roller')}
+      >
+        <Text style={styles.buttonText}>🎲 Dice Roller</Text>
+      </TouchableOpacity>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title="⏱ Go to Timer"
-          onPress={() => navigation.navigate('Timer')}
-          color="#2ecc71"
-        />
-      </View>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#2ecc71' }]}
+        onPress={() => navigation.navigate('Timer')}
+      >
+        <Text style={styles.buttonText}>⏱ Timer</Text>
+      </TouchableOpacity>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title="➕ Go to Counters"
-          onPress={() => navigation.navigate('Counters')}
-          color="#9b59b6"
-        />
-      </View>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#9b59b6' }]}
+        onPress={() => navigation.navigate('Counters')}
+      >
+        <Text style={styles.buttonText}>➕ Counters</Text>
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#b65972' }]}
+        onPress={() => navigation.navigate('Resources')}
+      >
+        <Text style={styles.buttonText}>🪙 Resources</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -38,19 +41,30 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#262626',
     padding: 20,
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 40,
-    color: '#333',
+    color: '#dcdcdc',
   },
-  buttonContainer: {
+  button: {
     width: '70%',
-    marginVertical: 10,
+    paddingVertical: 14,
     borderRadius: 10,
-    overflow: 'hidden', // ensures rounded corners apply to Button
+    marginVertical: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5, // for Android shadow
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

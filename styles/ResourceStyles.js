@@ -1,0 +1,84 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#0e0e10',
+  },
+  listContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+  },
+  resourceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#1b1b1f',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    marginVertical: 6,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  icon: {
+    fontSize: 26,
+    width: 40,
+    textAlign: 'center',
+  },
+  nameInput: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#ffffff',
+    borderBottomWidth: 1,
+    borderColor: '#444',
+    marginRight: 8,
+  },
+  button: {
+    backgroundColor: '#333',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginHorizontal: 4,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  valueText: {
+    fontSize: 22,
+    color: '#fff',
+    width: 40,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  removeText: {
+    color: '#ff5555',
+    fontSize: 20,
+    marginLeft: 8,
+  },
+  addButtonContainer: {
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  addButton: {
+    backgroundColor: '#4e9af1',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 14,
+    shadowColor: '#4e9af1',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.4,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  addButtonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+});

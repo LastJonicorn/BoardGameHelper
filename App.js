@@ -4,6 +4,9 @@ import HomeScreen from './screens/HomeScreen';
 import DiceRollerScreen from './screens/DiceRollerScreen';
 import TimerScreen from './screens/TimerScreen';
 import CounterScreen from './screens/CounterScreen';
+import ResourceScreen from './screens/ResourceScreen';
+
+//npx eas build --platform android --profile preview
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +31,11 @@ export default function App() {
           name="Counters"
           component={CounterScreen}
           options={{ title: 'Counters' }}
+        />
+        <Stack.Screen
+          name="Resources"
+          component={ResourceScreen}
+          options={{ title: 'Resources' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
