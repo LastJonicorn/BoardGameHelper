@@ -6,28 +6,28 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.title}>Game Helper</Text>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#4e9af1' }]}
+        style={[styles.button, { backgroundColor: '#496688' }]}
         onPress={() => navigation.navigate('Dice Roller')}
       >
         <Text style={styles.buttonText}>🎲 Dice Roller</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#2ecc71' }]}
+        style={[styles.button, { backgroundColor: '#568569' }]}
         onPress={() => navigation.navigate('Timer')}
       >
         <Text style={styles.buttonText}>⏱ Timer</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#9b59b6' }]}
+        style={[styles.button, { backgroundColor: '#7b5c87' }]}
         onPress={() => navigation.navigate('Counters')}
       >
         <Text style={styles.buttonText}>➕ Counters</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#b65972' }]}
+        style={[styles.button, { backgroundColor: '#87606a' }]}
         onPress={() => navigation.navigate('Resources')}
       >
         <Text style={styles.buttonText}>🪙 Resources</Text>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 40,
-    color: '#dcdcdc',
+    color: '#ffefcf',
   },
   button: {
     width: '70%',
@@ -56,11 +56,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
+    shadowColor: '#6b390a',
+    shadowOffset: { width: 3, height: 2 },
+    shadowRadius: 5.5,
     elevation: 5, // for Android shadow
+    borderWidth: 2,
+    borderColor: '#6b390a',   
   },
   buttonText: {
     color: '#fff',

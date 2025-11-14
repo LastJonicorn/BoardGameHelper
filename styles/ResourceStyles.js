@@ -36,7 +36,7 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#444',
     marginRight: 8,
-  },
+    },
   button: {
     backgroundColor: '#333',
     borderRadius: 8,
@@ -66,15 +66,17 @@ export default StyleSheet.create({
     paddingVertical: 10,
   },
   addButton: {
-    backgroundColor: '#4e9af1',
+    backgroundColor: '#676767',
     paddingVertical: 14,
     paddingHorizontal: 40,
     borderRadius: 14,
-    shadowColor: '#4e9af1',
+    shadowColor: '#d8c5ad',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.4,
     shadowRadius: 5,
     elevation: 5,
+    borderWidth: 2,
+    borderColor: '#6b390a',   
   },
   addButtonText: {
     fontSize: 18,

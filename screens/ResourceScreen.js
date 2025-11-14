@@ -1,62 +1,205 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
-  findNodeHandle,
-} from 'react-native';
+import {View,Text,TouchableOpacity,TextInput,SafeAreaView,KeyboardAvoidingView,ScrollView,Platform,findNodeHandle,Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'; // 👈 smooth scroll
 import styles from '../styles/ResourceStyles';
 
 const resourceIcons = {
+  // 💰 Currency & valuables
   gold: '💰',
   money: '💰',
+  coin: '🪙',
   coins: '🪙',
+  gem: '💎',
+  gems: '💎',
+  diamond: '💎',
+  diamonds: '💎',
+  treasure: '💎',
+  treasures: '💎',
+  crystal: '🔮',
+  crystals: '🔮',
+
+  // ❤️ Health, stamina, mana
   health: '❤️',
   hp: '❤️',
   hitpoints: '❤️',
   mana: '🔵',
+  mp: '🔵',
+  stamina: '🟢',
+  sp: '🟢',
   energy: '⚡',
   lightning: '⚡',
-  stamina: '🟢',
+  focus: '🧘‍♂️',
+  rage: '😡',
+  sanity: '🌀',
+
+  // ⭐ Experience, lore, level
   xp: '⭐',
   experience: '⭐',
-  lore: '⭐',
-  food: '🍗',
-  wood: '🌲',
+  lore: '📖',
+  level: '🎖️',
+  rank: '🏅',
+  fame: '🌟',
+  reputation: '📣',
+
+  // 🧠 Attributes & stats
+  strength: '💪',
+  power: '💪',
+  attack: '🗡️',
+  atk: '🗡️',
+  defence: '🛡️',
+  defense: '🛡️',
+  def: '🛡️',
+  intelligence: '🧠',
+  int: '🧠',
+  dexterity: '🎯',
+  dex: '🎯',
+  accuracy: '🎯',
+  acc: '🎯',
+  speed: '🏃‍♂️',
+  spd: '🏃‍♂️',
+  agility: '🏃‍♂️',
+  charisma: '😎',
+  luck: '🍀',
+  lck: '🍀',
+  fortune: '🍀',
+  perception: '👁️',
+  stealth: '🕶️',
+
+  // 🌿 Resources / crafting
+  wood: '🪵',
   trees: '🌲',
+  tree: '🌲',
   forest: '🌲',
   foliage: '🌲',
   stone: '🪨',
   rock: '🪨',
   iron: '⛓️',
-  magic: '🪄',
-  magica: '🪄',
-  key: '🔑',
-  attack: '🗡️',
-  power: '🗡️',
-  gem: '💎',
-  diamond: '💎',
-  treasure: '💎',
-  scroll: '📜',
-  parchment: '📜',
-  paper: '📜',
-  shield: '🛡️',
-  defence: '🛡️',
-  fire: '🔥',
-  fireball: '🔥',
+  ore: '⛏️',
+  metal: '⚙️',
+  clay: '🧱',
+  sand: '🏖️',
+  coal: '🪨',
+  oil: '🛢️',
   water: '💧',
   liquid: '💧',
+  liquids: '💧',
   food: '🍗',
   meat: '🍗',
+  bread: '🍞',
+  fish: '🐟',
+  plant: '🌿',
+  herbs: '🌿',
+  seed: '🌱',
+  seeds: '🌱',
 
+  // 🔮 Magic & elements
+  magic: '🪄',
+  magica: '🪄',
+  spell: '✨',
+  fire: '🔥',
+  fireball: '🔥',
+  watermagic: '💧',
+  air: '🌪️',
+  wind: '🌪️',
+  ice: '❄️',
+  frost: '❄️',
+  earth: '🌍',
+  mud: '🌍',
+  light: '💡',
+  holy: '🕊️',
+  dark: '🌑',
+  shadow: '🌑',
+  poison: '☠️',
+  toxic: '☠️',
+  blood: '🩸',
+  soul: '👻',
+  spirit: '👻',
+  mind: '🧠',
+  void: '🌌',
+
+  // ⚙️ Tools & crafting
+  tool: '🛠️',
+  tools: '🛠️',
+  hammer: '🔨',
+  pickaxe: '⛏️',
+  crafting: '⚙️',
+  forge: '🔥',
+  anvil: '⚒️',
+  gear: '⚙️',
+  key: '🗝️',
+  keys: '🗝️',
+  lock: '🔒',
+  chest: '🧰',
+  inventory: '🎒',
+
+  // ⚔️ Combat & battle
+  damage: '💥',
+  critical: '💢',
+  bleed: '🩸',
+  shield: '🛡️',
+  shields: '🛡️',
+  bow: '🏹',
+  arrow: '🏹',
+  defense: '🛡️',
+  hit: '💥',
+  miss: '💨',
+  target: '🎯',
+
+  // ☠️ Status effects
+  buff: '⬆️',
+  buffed: '⬆️',
+  debuff: '⬇️',
+  debuffed: '⬇️',
+  sleep: '😴',
+  sleepy: '😴',
+  cursed: '💀',
+  curse: '💀',
+  blessing: '✨',
+  frozen: '❄️',
+  burning: '🔥',
+  paralyzed: '⚡',
+  confused: '❓',
+  blind: '🙈',
+  invisible: '👻',
+  stunned: '💫',
+  enraged: '😡',
+  fear: '😱',
+  slowed: '🐢',
+  haste: '🐇',
+
+  // 🌍 Environment / exploration
+  map: '🗺️',
+  compass: '🧭',
+  torch: '🔥',
+  camp: '⛺',
+  home: '🏠',
+  town: '🏘️',
+  castle: '🏰',
+  dungeon: '🕳️',
+  cave: '🪨',
+  mountain: '⛰️',
+  island: '🏝️',
+  desert: '🏜️',
+
+  // 📜 Misc
+  scroll: '📜',
+  scrolls: '📜',
+  parchment: '📜',
+  paper: '📜',
+  book: '📚',
+  books: '📚',
+  note: '🗒️',
+  time: '⏳',
+  timer: '⏰',
+  quest: '📜',
+  mission: '🎯',
+  achievement: '🏆',
+  trophy: '🏆',
+  progress: '📈',
+  coinpurse: '👝',
+  chest: '🧰',
 };
 
 export default function ResourceScreen() {
@@ -78,6 +221,17 @@ export default function ResourceScreen() {
     }
   };
 
+  const confirmRemove = (id) => {
+    Alert.alert(
+      'Remove Resource',
+      'Are you sure you want to delete this resource?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Remove', style: 'destructive', onPress: () => removeResource(id) },
+      ]
+    );
+  };
+
   const saveResources = async (newResources) => {
     try {
       setResources(newResources);
@@ -88,7 +242,7 @@ export default function ResourceScreen() {
   };
 
   const addResource = () => {
-    if (resources.length >= 6) return;
+    if (resources.length >= 8) return;
     const newRes = {
       id: Date.now().toString(),
       name: `Resource ${resources.length + 1}`,
@@ -166,14 +320,14 @@ export default function ResourceScreen() {
                 >
                   <Text style={styles.buttonText}>+</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => removeResource(item.id)}>
+                <TouchableOpacity onPress={() => confirmRemove(item.id)}>
                   <Text style={styles.removeText}>✖</Text>
                 </TouchableOpacity>
               </View>
             );
           })}
 
-          {resources.length < 6 && (
+          {resources.length < 8 && (
             <View
               style={[
                 styles.addButtonContainer,

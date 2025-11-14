@@ -126,15 +126,22 @@ selectedDiceGlow: {
   },
 
   rollButton: {
-    backgroundColor: '#4e9af1',
+    backgroundColor: '#676767',
     paddingVertical: 14,
     paddingHorizontal: 50,
+    marginBottom: 10,
     borderRadius: 25,
-    shadowColor: '#4e9af1',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 6,
-    elevation: 6,
+    shadowColor: '#d8c5ad',      // stronger inner shadow color
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.6,
+    shadowRadius: 8,
+    elevation: 10,
+    borderWidth: 2,
+    borderColor: '#6b390a',       // subtle outer highlight
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',           // ensures inner pseudo-lines stay inside
+    position: 'relative',
   },
 
   rollButtonText: {
@@ -142,6 +149,9 @@ selectedDiceGlow: {
     fontWeight: 'bold',
     color: '#fff',
     letterSpacing: 1,
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
 
   historyContainer: {
@@ -179,25 +189,31 @@ selectedDiceGlow: {
     gap: 15,
   },
 
-  countButton: {
-    width: 45,
-    height: 45,
-    borderRadius: 22,
-    backgroundColor: '#4e9af1',
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#4e9af1',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 5,
-  },
+countButton: {
+  width: 50,
+  height: 50,
+  borderRadius: 25,
+  backgroundColor: '#676767',
+  alignItems: 'center',
+  justifyContent: 'center',
+  shadowColor: '#d8c5ad',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.5,
+  shadowRadius: 6,
+  elevation: 8,
+  borderWidth: 2,
+  borderColor: '#6b390a',
+  position: 'relative',
+},
 
-  countButtonText: {
-    color: 'white',
-    fontSize: 26,
-    fontWeight: 'bold',
-  },
+countButtonText: {
+  color: '#fff',
+  fontSize: 28,
+  fontWeight: 'bold',
+  textShadowColor: 'rgba(0,0,0,0.2)',
+  textShadowOffset: { width: 1, height: 1 },
+  textShadowRadius: 1.5,
+},
 
   diceCountText: {
     fontSize: 22,

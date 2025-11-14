@@ -9,7 +9,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 50,
   },
   title: {
     fontSize: 26,
@@ -128,6 +128,23 @@ colon: {
   marginHorizontal: 15,
   color: '#ffffff',
   fontWeight: 'bold',
+},
+modeButton: {
+    backgroundColor: '#5e585053',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 0,
+    shadowColor: '#f1d64e',
+    shadowOffset: { width: 1, height: 10 },
+    shadowOpacity: 0.6,
+    shadowRadius: 6,
+    elevation: 1,
+    marginTop: 70,
+},
+
+modeButtonText: {
+  fontSize: 20,
+  color: '#ffed9a',
 },
 
 

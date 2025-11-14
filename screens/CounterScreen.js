@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Dimensions,
-  SafeAreaView,
-  findNodeHandle,
-} from 'react-native';
+import {View,Text,TouchableOpacity,TextInput,Dimensions,SafeAreaView,findNodeHandle,Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -40,6 +32,17 @@ export default function CounterScreen() {
     } catch (e) {
       console.log('Error loading counters:', e);
     }
+  };
+
+  const confirmRemove = (id) => {
+    Alert.alert(
+      'Remove Counter',
+      'Are you sure you want to delete this counter?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Remove', style: 'destructive', onPress: () => removeCounter(id) },
+      ]
+    );
   };
 
   const saveCounters = async (newCounters) => {
@@ -142,10 +145,10 @@ export default function CounterScreen() {
                   </TouchableOpacity>
                 </View>
                 <TouchableOpacity
-                  onPress={() => removeCounter(counter.id)}
+                  onPress={() => confirmRemove(counter.id)}
                   style={styles.removeButton}
                 >
-                  <Text style={[styles.removeButtonText, { color }]}>Remove</Text>
+                  <Text style={styles.removeIcon}>✖</Text>
                 </TouchableOpacity>
               </View>
             );

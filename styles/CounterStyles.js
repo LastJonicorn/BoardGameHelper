@@ -50,11 +50,17 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   removeButton: {
-    marginTop: 4,
+    position: 'absolute',
+    top: 0,
+    right: 8,
+    padding: 1,
+    zIndex: 10,
   },
-  removeButtonText: {
+
+  removeIcon: {
+    fontSize: 20,
+    color: '#ff3b30', // iOS-style red
     fontWeight: 'bold',
-    opacity: 0.7,
   },
   addTile: {
     borderWidth: 2,

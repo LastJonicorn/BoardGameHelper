@@ -1,14 +1,8 @@
-import React, { useState, useRef } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  FlatList,
-  Image,
-} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import {View,Text,TouchableOpacity,SafeAreaView,FlatList,Image,} from 'react-native';
 import styles from '../styles/DiceRollerStyles';
 
+// Sidebar dice images (keep these)
 const diceImages = {
   4: require('../assets/d4.png'),
   6: require('../assets/d6.png'),
@@ -18,6 +12,7 @@ const diceImages = {
   20: require('../assets/d8d20.png'),
 };
 
+// Sidebar tint colors
 const diceColors = {
   4: '#e74c3c',
   6: '#f39c12',
@@ -27,6 +22,46 @@ const diceColors = {
   20: '#9b59b6',
 };
 
+// 🎬 Animation frames
+const diceAnimationFrames = {
+  4: [
+    require('../assets/Dice/d4/1.png'),
+    require('../assets/Dice/d4/2.png'),
+    require('../assets/Dice/d4/3.png'),
+    require('../assets/Dice/d4/4.png'),
+  ],
+  6: [
+    require('../assets/Dice/d6/1.png'),
+    require('../assets/Dice/d6/2.png'),
+    require('../assets/Dice/d6/3.png'),
+    require('../assets/Dice/d6/4.png'),
+  ],
+  8: [
+    require('../assets/Dice/d8/1.png'),
+    require('../assets/Dice/d8/2.png'),
+    require('../assets/Dice/d8/3.png'),
+    require('../assets/Dice/d8/4.png'),
+  ],
+  10: [
+    require('../assets/Dice/d10/1.png'),
+    require('../assets/Dice/d10/2.png'),
+    require('../assets/Dice/d10/3.png'),
+    require('../assets/Dice/d10/4.png'),
+  ],
+  12: [
+    require('../assets/Dice/d12/1.png'),
+    require('../assets/Dice/d12/2.png'),
+    require('../assets/Dice/d12/3.png'),
+    require('../assets/Dice/d12/4.png'),
+  ],
+  20: [
+    require('../assets/Dice/d20/1.png'),
+    require('../assets/Dice/d20/2.png'),
+    require('../assets/Dice/d20/3.png'),
+    require('../assets/Dice/d20/4.png'),
+  ],
+};
+
 export default function DiceRollerScreen() {
   const diceTypes = [4, 6, 8, 10, 12, 20];
   const [selectedDice, setSelectedDice] = useState(6);
@@ -34,11 +69,33 @@ export default function DiceRollerScreen() {
   const [history, setHistory] = useState([]);
   const [diceCount, setDiceCount] = useState(1);
   const [isRolling, setIsRolling] = useState(false);
+
+  const [frameOffsets, setFrameOffsets] = useState([0, 1, 2]); // random offset per die
+  const [frameIndex, setFrameIndex] = useState(0);
   const rollInterval = useRef(null);
+  const animInterval = useRef(null);
+
+  // 🌀 Animate frames
+  useEffect(() => {
+    if (isRolling) {
+      animInterval.current = setInterval(() => {
+        setFrameIndex((prev) => (prev + 1) % 4);
+      }, 100);
+    } else {
+      setFrameIndex(0);
+      clearInterval(animInterval.current);
+    }
+    return () => clearInterval(animInterval.current);
+  }, [isRolling]);
 
   const rollDice = () => {
     if (isRolling) return;
     setIsRolling(true);
+
+    // 🔀 new random frame offsets so each die animates differently
+    setFrameOffsets(
+      Array.from({ length: diceCount }, () => Math.floor(Math.random() * 4))
+    );
 
     rollInterval.current = setInterval(() => {
       const tempResults = Array.from({ length: diceCount }, () =>
@@ -60,7 +117,7 @@ export default function DiceRollerScreen() {
         result: r,
       }));
       setHistory((prev) => [...newEntries, ...prev].slice(0, 5));
-    }, 1000);
+    }, 750);
   };
 
   const increaseDice = () => {
@@ -87,7 +144,7 @@ export default function DiceRollerScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Sidebar with dice choices */}
+        {/* Sidebar */}
         <View style={styles.sidebar}>
           <FlatList
             data={diceTypes}
@@ -123,7 +180,7 @@ export default function DiceRollerScreen() {
             )}
           />
 
-          {/* Roll history */}
+          {/* History */}
           <View style={styles.historyContainer}>
             <Text style={styles.historyTitle}>Last 5 Rolls:</Text>
             {history.map((h, i) => (
@@ -136,37 +193,49 @@ export default function DiceRollerScreen() {
 
         {/* Main area */}
         <View style={styles.mainArea}>
-          {/* Vertical stack of dice */}
           <View style={styles.resultCenterContainer}>
             <View style={styles.multiDiceContainer}>
-              {results.map((res, index) => (
-                <View key={index} style={styles.resultContainer}>
-                  <Image
-                    source={diceImages[selectedDice]}
-                    style={[
-                      styles.resultDiceImage,
-                      { tintColor: diceColors[selectedDice] },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.resultInsideText,
-                      selectedDice === 4 && styles.d4ResultAdjustment,
-                    ]}
-                  >
-                    {res !== null ? res : ''}
-                  </Text>
-                </View>
-              ))}
-            </View>
+              {results.map((res, index) => {
+                const frames = diceAnimationFrames[selectedDice];
 
-            {/* 🎯 Add total below dice */}
+                let frameToShow;
+                if (!isRolling) {
+                  frameToShow = frames[0]; // always show image 1 when idle
+                } else {
+                  const randIndex = (frameIndex + frameOffsets[index]) % 3 + 1; // only 1,2,3
+                  frameToShow = frames[randIndex];
+                }
+
+                return (
+                  <View key={index} style={styles.resultContainer}>
+                    <Image
+                      source={frameToShow}
+                      style={[
+                        styles.resultDiceImage,
+                        {
+                          width: 160,  // increased size
+                          height: 160, // increased size
+                        },
+                      ]}
+                      resizeMode="contain"
+                    />
+                    <Text
+                      style={[
+                        styles.resultInsideText,
+                        selectedDice === 4 && styles.d4ResultAdjustment,
+                      ]}
+                    >
+                      {res !== null && !isRolling ? res : ''}
+                    </Text>
+                  </View>
+                );
+              })}
+            </View>
             {diceCount > 1 && total !== null && (
               <Text style={styles.totalText}>Total: {total}</Text>
             )}
           </View>
 
-          {/* + / - buttons */}
           <View style={styles.diceCountControls}>
             <TouchableOpacity
               onPress={decreaseDice}
@@ -193,7 +262,6 @@ export default function DiceRollerScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Roll button */}
           <View style={styles.bottomButtonContainer}>
             <TouchableOpacity
               style={[styles.rollButton, isRolling && { opacity: 0.5 }]}
